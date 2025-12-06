@@ -1,0 +1,48 @@
+plugins {
+    id 'application'
+}
+
+sourceSets{
+    main {
+        java {
+            srcDirs = ["src"]
+        }
+
+        resources {
+            srcDirs = ["resources"]
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform("org.lwjgl:lwjgl-bom:3.3.6")
+
+    implementation "org.lwjgl:lwjgl"
+    implementation "org.lwjgl:lwjgl-assimp"
+    implementation "org.lwjgl:lwjgl-glfw"
+    implementation "org.lwjgl:lwjgl-opencl"
+    implementation "org.lwjgl:lwjgl-opengl"
+    implementation "org.lwjgl:lwjgl-stb"
+    implementation "org.lwjgl:lwjgl::natives-windows"
+    implementation "org.lwjgl:lwjgl-assimp::natives-windows"
+    implementation "org.lwjgl:lwjgl-glfw::natives-windows"
+    implementation "org.lwjgl:lwjgl-opengl::natives-windows"
+    implementation "org.lwjgl:lwjgl-stb::natives-windows"
+    implementation "org.joml:joml:1.10.8"
+
+    implementation "io.github.spair:imgui-java-app:1.90.0"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    mainClass = 'shadingblank.Launcher'
+}
