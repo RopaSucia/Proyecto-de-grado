@@ -11,6 +11,16 @@ public class Attribute2f extends NodeAttribute {
 		value = new float[] {x, y};
 	}
 
+	public Attribute2f(String name, Node node, float [] vector) {
+		super("02f-" + name, node);
+
+		if(vector.length >= 2) {
+			value = vector;
+		} else {
+			vector = new float[] {1, 1};
+		}
+	}	
+
 	public Attribute2f(String name, Node node, Vector2f vector) {
 		this(name, node, vector.x, vector.y);
 	}

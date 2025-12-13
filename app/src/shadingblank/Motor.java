@@ -7,7 +7,7 @@ import shadingblank.workspace.NodeManager;
 public abstract class Motor {
 
 	public String title = "-";
-	public int height = 600, width = 800;
+	public int height = 800, width = 1400;
 
 	public Window window;
 	public EventsManager eventsManager;

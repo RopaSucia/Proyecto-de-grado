@@ -12,10 +12,12 @@ public class SortAttributes {
 	private final List<Attribute1f> att1f;
 	private final List<Attribute2f> att2f;
 	private final List<Attribute3f> att3f;
+	private final List<Attribute4f> att4f;
 
 	private final List<TextAttribute> attTxt;
+	private final List<ColorAttribute> attCol;
 
-	public final int size1f, size2f, size3f, sizeTxt;
+	public int size1f, size2f, size3f, size4f, sizeTxt;
 
 	public SortAttributes(NodeAttribute[] attributes) {
 		this.attributes = attributes;
@@ -23,6 +25,7 @@ public class SortAttributes {
 		att1f = new ArrayList<>();
 		att2f = new ArrayList<>();
 		att3f = new ArrayList<>();
+		att4f = new ArrayList<>();
 
 		attTxt = new ArrayList<>();
 
@@ -46,8 +49,11 @@ public class SortAttributes {
 					case 3:
 						att3f.add((Attribute3f) att);
 						break;
+					case 4:
+						att4f.add((Attribute4f) att);
+						break;
 					default:
-						att3f.add((Attribute3f) att);
+						att1f.add((Attribute1f) att);
 						break;
 				}
 			}
@@ -66,6 +72,8 @@ public class SortAttributes {
 		size1f = att1f.size();
 		size2f = att2f.size();
 		size3f = att3f.size();
+		size4f = att4f.size();
+
 		sizeTxt = attTxt.size();
 	}
 
@@ -79,6 +87,10 @@ public class SortAttributes {
 
 	public void getAttributes3f(Attribute3f[] attributes) {
 		att3f.toArray(attributes);
+	}
+
+	public void getAttributes4f(Attribute4f[] attributes) {
+		att4f.toArray(attributes);
 	}
 
 	public void getAttributesTxt(TextAttribute[] attributes) {
@@ -95,6 +107,10 @@ public class SortAttributes {
 
 	public List<Attribute3f> getAttributes3f() {
 		return att3f;
+	}
+
+	public List<Attribute4f> getAttributes4f() {
+		return att4f;
 	}
 
 	public List<TextAttribute> getAttributesTxt() {

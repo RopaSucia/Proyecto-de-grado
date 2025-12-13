@@ -1,0 +1,5 @@
+build
+bin
+app/.settings
+app/.classpath
+app/.project

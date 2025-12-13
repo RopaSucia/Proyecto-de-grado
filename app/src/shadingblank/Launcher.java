@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import shadingblank.nodes.CameraNode;
+import shadingblank.nodes.ViewportNode;
 import shadingblank.nodes.MeshNode;
 
 public class Launcher extends Motor{
@@ -21,6 +22,7 @@ public class Launcher extends Motor{
 	Mesh mesh;
 
 	FrameBuffer frame;
+	ViewportNode frameNode;
 
 	Shader vertexShader;
 	Shader fragmentShader;
@@ -51,8 +53,8 @@ public class Launcher extends Motor{
 		});
 		backgroundColor(0, 0, 1, 1);
 
-		frame = new FrameBuffer(100, 100);
-
+		frame = new FrameBuffer(800, 600);
+		frameNode = new ViewportNode("custom buffer", frame);
 		vertexShader = new Shader("basicVertex.vert", vertexSrc, Shader.VERTEX_SHADER);
 
 		fragmentShader = new Shader("basicFragment.frag", fragmentScr, Shader.FRAGMENT_SHADER);
@@ -62,7 +64,7 @@ public class Launcher extends Motor{
 
 		Scene scene = new Scene();
 
-		MainSpace space = new MainSpace(frame, scene.nodes, scene.resources);
+		MainSpace space = new MainSpace(frameNode, scene.nodes, scene.resources);
 
 		Node node = new Node("Nuevo nodo");
 
@@ -81,8 +83,11 @@ public class Launcher extends Motor{
 		scene.nodes.add(node);
 		scene.nodes.add(meshN);
 		scene.nodes.add(camera);
+		scene.nodes.add(frameNode);
 
 		window.addLayer(space);
+
+		frame.bgColor(0, 1, 1, 1);
 	}
 
 	@Override
@@ -93,7 +98,6 @@ public class Launcher extends Motor{
 	@Override
 	public void loop() {
 		frame.begin();
-		frame.backgroundColor(0, 1, 1, 1);
 
 		double [] ms = eventsManager.mousePos();
 

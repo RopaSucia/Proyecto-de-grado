@@ -11,6 +11,8 @@ public class CameraNode extends Node {
 
 	//private Vector3f pos, angles;
 
+	public final Attribute1f fov;
+
 	public final Attribute3f pos;
 	public final Attribute3f angles;
 
@@ -21,11 +23,10 @@ public class CameraNode extends Node {
 
 		this.size = size;
 
-		//pos = new Vector3f();
-		//angles = new Vector3f();
-
 		view = new Matrix4f();
 		projection = new Matrix4f();
+
+		fov = new Attribute1f("fov", this, 90);
 
 		pos = new Attribute3f("position",this, 0, 0 ,0);
 		angles = new Attribute3f("angle", this, 0, 0, 0);
@@ -72,8 +73,7 @@ public class CameraNode extends Node {
 
 	public Matrix4f getProjectionMat() {
 		projection.identity();
-		projection.perspective(90f, size[0]/size[1], 0.001f, 1000f);
-
+		projection.perspective(fov.value, size[0]/size[1], 0.001f, 1000f);
 		return projection;
 	}
 }

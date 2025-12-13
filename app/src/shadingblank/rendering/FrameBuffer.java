@@ -8,38 +8,49 @@ import org.lwjgl.BufferUtils;
 public class FrameBuffer {
 
 	private int frameID, renderID, textureID;
-	private float r, g, b, a;
 
-	private int height = 600, width = 800;
+	private int height, width;
+
+	public float [] size;
+	public float [] color;
 
 	public boolean depthBuffer = true;
 	public boolean stencilBuffer = true;
 
 	public FrameBuffer(int height, int width) {
-		this.height = height;
-		this.width = width;
-		
-		newFrameBuffer(false, height, width);
+
+		size = new float[2];
+		color = new float[4];
+
+		resize(height, width);
+	
 	}
+
+	// --------Begin and End attach functions--------
+
+	// begin with the drawing operations on this buffer
 
 	public void begin() {
 		glBindFramebuffer(GL_FRAMEBUFFER, frameID);
 
-		FloatBuffer colors = BufferUtils.createFloatBuffer(4)
-		.put(new float[]{r, g, b, a}).flip();
-
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_STENCIL_TEST);
-		glClearBufferfv(GL_COLOR, 0, colors);
+		glClearBufferfv(GL_COLOR, 0, color);
 		glClear(GL_DEPTH_BUFFER_BIT);	
 		glViewport(0, 0, width, height);
 	}
+
+	// finish with the drawing operations on this buffer
 
 	public void close() {
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 
-	private void newFrameBuffer(boolean AAMS, int height, int width) {
+	//--------setters--------
+
+	//set buffer size
+
+	private void resize(boolean AAMS, int height, int width) {
 		if (!AAMS) {
 			frameID = glGenFramebuffers();
 			glBindFramebuffer(GL_FRAMEBUFFER, frameID);
@@ -61,14 +72,34 @@ public class FrameBuffer {
 		}
 	}
 
-	public void backgroundColor(float r, float g, float b, float a) {
-		this.r = r; this.g = g; this.b = b; this.a = a;
+	public void resize(int height, int width) {
+		if(this.height != height || this.width != width) {
+			resize(false, height, width);
+			this.height = height;
+			this.width = width;
+
+			size[0] = this.height;
+			size[1] = this.width;
+		}
 	}
 
-	public void setViewport(int height, int width) {
-		this.height = height;
-		this.width = width;
-		newFrameBuffer(false, height, width);
+	//set color size
+
+	public void bgColor(float r, float g, float b, float a) {
+		color[0] = r;
+		color[1] = g;
+		color[2] = b;
+		color[3] = a;
+	}
+
+	//--------getters--------
+
+	public int getXSize() {
+		return width;
+	}
+
+	public int getYSize() {
+		return height;
 	}
 
 	public int getTexture() {

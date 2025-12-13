@@ -6,6 +6,7 @@ import imgui.ImGui;
 import imgui.ImGuiStyle;
 import imgui.ImVec2;
 import shadingblank.Launcher;
+import shadingblank.nodes.ViewportNode;
 import shadingblank.nodes.Node;
 import shadingblank.rendering.FrameBuffer;
 import shadingblank.workspace.NodeManager;
@@ -43,7 +44,7 @@ public class MainSpace extends Panel implements shadingblank.imguiconfig.GuiLaye
 			ImGuiChildFlags.Border |
 			ImGuiChildFlags.ResizeY;
 
-	private FrameBuffer buffer;
+	private ViewportNode buffer;
 
 	private ImVec2 pos;
 	private ImVec2 modelViewSize;
@@ -54,17 +55,13 @@ public class MainSpace extends Panel implements shadingblank.imguiconfig.GuiLaye
 
 	private ImGuiStyle style;
 
-	private AttributesFrame attributesFrame;
-
-	public MainSpace(FrameBuffer buffer, NodeManager nm, ResourceManager rm) {
+	public MainSpace(ViewportNode buffer, NodeManager nm, ResourceManager rm) {
 		this.buffer = buffer;
 		pos = new ImVec2();
 		modelViewSize = new ImVec2();
 
 		viewportSize = new float[2];
 		style = ImGui.getStyle();
-
-		attributesFrame = new AttributesFrame();
 
 		style.setChildRounding(5f);
 		style.setColor(ImGuiCol.WindowBg, 0.05f, 0.05f, 0.05f, 1f);
@@ -104,10 +101,12 @@ public class MainSpace extends Panel implements shadingblank.imguiconfig.GuiLaye
 		}else{
 			ImGui.beginChild("modelName", passiveChildFlags, childWindowFlags);
 		}
+			buffer.update();
 			modelViewSize = ImGui.getWindowSize();
 			viewportSize[0] = modelViewSize.x;
 			viewportSize[1] = modelViewSize.y;
-			ImGui.image(buffer.getTexture(), modelViewSize);
+			ImGui.image(buffer.buffer.getTexture(), modelViewSize);
+
 		ImGui.endChild();
 
 		// ----------

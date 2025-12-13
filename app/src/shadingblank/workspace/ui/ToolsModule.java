@@ -7,17 +7,19 @@ import imgui.flag.ImGuiTableFlags;
 import shadingblank.nodes.Node;
 import shadingblank.workspace.NodeManager;
 import shadingblank.workspace.ResourceManager;
+import shadingblank.workspace.ui.modules.AttributesModule;
+import shadingblank.workspace.ui.modules.NodeCreatorDialog;
 
 public class ToolsModule extends Panel{
 
 	private NodeManager nodeManager;
 	private ResourceManager resourceManager;
 
-	private AttributesFrame attributesFrame;
+	private AttributesModule attributesModule;
 
 	private Node currentAttributeNode;
 
-	private AddNodePanel panel;
+	private NodeCreatorDialog panel;
 
 	private boolean newCurrentAttribute = false;
 
@@ -29,9 +31,9 @@ public class ToolsModule extends Panel{
 		this.nodeManager = nodeManager;
 		this.resourceManager = resourceManager;
 
-		attributesFrame = new AttributesFrame();
+		attributesModule = new AttributesModule();
 
-		panel = new AddNodePanel(nodeManager);
+		panel = new NodeCreatorDialog(nodeManager);
 	}
 
 	private void begin() {
@@ -40,6 +42,7 @@ public class ToolsModule extends Panel{
 
 			ImGui.pushStyleColor(ImGuiCol.Button, .03f, .03f, .03f, 1f);
 			ImGui.setCursorPosY(2f);
+
 			ImGui.button("nodes");
 
 			ImGui.button("code");
@@ -61,7 +64,7 @@ public class ToolsModule extends Panel{
 		begin();
 		panel.update();
 
-		if(ImGui.button("add node")) {
+		if(ImGui.button("new")) {
 			panel.open = true;
 		}
 
@@ -97,9 +100,9 @@ public class ToolsModule extends Panel{
 
 	public void Attributes() {
 		begin();
-		attributesFrame.update();
+		attributesModule.update();
 		if(currentAttributeNode != null && newCurrentAttribute) {
-			attributesFrame.getAttributeList(currentAttributeNode);
+			attributesModule.getAttributeList(currentAttributeNode);
 			newCurrentAttribute = false;
 		}
 	}
