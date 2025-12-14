@@ -7,14 +7,14 @@ public class ViewportNode extends Node{
 	public final FrameBuffer buffer;
 
 	public final Attribute2f bufferSize; // Height and width buffer size
-	public final Attribute4f bgColor;
+	public final ColorAttribute bgColor;
 
 	public ViewportNode(String name, FrameBuffer buffer) {
 		super(name);
 		this.buffer = buffer;
 
 		bufferSize = new Attribute2f("size", this, buffer.getXSize(), buffer.getYSize());
-		bgColor = new Attribute4f("background color", this, buffer.color);
+		bgColor = new ColorAttribute("background color", this, buffer.color);
 
 	}
 

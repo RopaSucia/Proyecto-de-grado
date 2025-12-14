@@ -6,7 +6,7 @@ import imgui.type.ImString;
 
 import java.nio.ByteBuffer;
 
-public class CodeEditor extends Panel implements shadingblank.imguiconfig.GuiLayer{
+public class CodeEditor extends Panel{
 
 	private ImString code;
 

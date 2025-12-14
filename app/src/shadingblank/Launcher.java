@@ -1,9 +1,9 @@
 package shadingblank;
 
 import shadingblank.rendering.*;
-import shadingblank.workspace.NodeManager;
 import shadingblank.workspace.Scene;
 import shadingblank.workspace.ui.*;
+import shadingblank.workspace.ui.modules.FileExplorerDialog;
 import shadingblank.nodes.Node;
 
 import java.util.ArrayList;
@@ -36,10 +36,12 @@ public class Launcher extends Motor{
 	double[] mousePos = new double[2];
 	double[] lastMousePos = new double[2];
 
-	String vertexSrc = ResourceFiles.getString("resources/basicVertex.vert");
-	String fragmentScr = ResourceFiles.getString("resources/basicFragment.frag");
+	String vertexSrc = FilesManager.getString("resources/basicVertex.vert");
+	String fragmentScr = FilesManager.getString("resources/basicFragment.frag");
 
 	String imagen = "C:\\Users\\USER\\Desktop\\ShadingBlank\\app\\resources\\Captura.PNG";
+
+	FileExplorerDialog diag;
 
 	@Override
 	public void init() {
@@ -52,6 +54,8 @@ public class Launcher extends Motor{
 			0, 1, 2, 2, 3, 0
 		});
 		backgroundColor(0, 0, 1, 1);
+
+		FilesManager.getDirectoryFiles("C:\\Users\\USER\\Desktop");
 
 		frame = new FrameBuffer(800, 600);
 		frameNode = new ViewportNode("custom buffer", frame);
@@ -66,7 +70,9 @@ public class Launcher extends Motor{
 
 		MainSpace space = new MainSpace(frameNode, scene.nodes, scene.resources);
 
-		Node node = new Node("Nuevo nodo");
+		diag = new FileExplorerDialog();
+		diag.directory("C:\\Users\\USER\\Desktop");
+		scene.nodes.createNode("nodoWebon");
 
 		meshN = new MeshNode("malla", mesh);
 		camera = new CameraNode("camara", space.getViewportSize());
@@ -80,12 +86,12 @@ public class Launcher extends Motor{
 		resourceManager.add(fragmentShader);
 		resourceManager.add(mesh);
 
-		scene.nodes.add(node);
 		scene.nodes.add(meshN);
 		scene.nodes.add(camera);
 		scene.nodes.add(frameNode);
 
 		window.addLayer(space);
+		window.addLayer(diag);
 
 		frame.bgColor(0, 1, 1, 1);
 	}

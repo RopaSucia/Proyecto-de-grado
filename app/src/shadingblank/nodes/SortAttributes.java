@@ -17,7 +17,7 @@ public class SortAttributes {
 	private final List<TextAttribute> attTxt;
 	private final List<ColorAttribute> attCol;
 
-	public int size1f, size2f, size3f, size4f, sizeTxt;
+	public int size1f, size2f, size3f, size4f, sizeTxt, sizeCol;
 
 	public SortAttributes(NodeAttribute[] attributes) {
 		this.attributes = attributes;
@@ -28,6 +28,7 @@ public class SortAttributes {
 		att4f = new ArrayList<>();
 
 		attTxt = new ArrayList<>();
+		attCol = new ArrayList<>();
 
 		// son número
 
@@ -64,8 +65,12 @@ public class SortAttributes {
 			matcher = pattern.matcher(att.name);
 
 			if(matcher.find()) {
-				System.out.println("si hay texto");
-				attTxt.add((TextAttribute)att);
+				if(matcher.group().equals("txt")) {
+					attTxt.add((TextAttribute)att);
+				}
+				if(matcher.group().equals("col")) {
+					attCol.add((ColorAttribute)att);
+				}
 			}
 		}
 
@@ -75,6 +80,8 @@ public class SortAttributes {
 		size4f = att4f.size();
 
 		sizeTxt = attTxt.size();
+		sizeCol = attCol.size();
+
 	}
 
 	public void getAttributes1f(Attribute1f[] attributes) {
@@ -97,6 +104,10 @@ public class SortAttributes {
 		attTxt.toArray(attributes);
 	}
 
+	public void getAttributesCol(ColorAttribute[] attributes) {
+		attCol.toArray(attributes);
+	}
+
 	public List<Attribute1f> getAttributes1f() {
 		return att1f;
 	}
@@ -115,5 +126,9 @@ public class SortAttributes {
 
 	public List<TextAttribute> getAttributesTxt() {
 		return attTxt;
+	}
+
+	public List<ColorAttribute> getAttributesCol() {
+		return attCol;
 	}
 }

@@ -13,12 +13,8 @@ public abstract class Panel implements GuiLayer{
 
 	}
 
-	public void inputBegin() {
-
-	}
-
-	public void inputEnd() {
-		
+	protected void childPadding(float padding) {
+    	ImGui.setCursorPos(ImGui.getCursorPosX() + padding, ImGui.getCursorPosY() + padding);		
 	}
 
 }

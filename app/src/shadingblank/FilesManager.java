@@ -2,8 +2,10 @@ package shadingblank;
 
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ResourceFiles {
+public class FilesManager {
 
 	public static String getString(String path) {
 		try{
@@ -25,5 +27,24 @@ public class ResourceFiles {
 			System.err.println("Inaccesible: " + path);
 			return null;
 		}
+	}
+
+	public static List<Path> getDirectoryFiles(String path) {
+
+		Path dir = Paths.get(path);
+
+		List<Path> files = new ArrayList<>();
+
+		try(DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+
+			for(Path entry: stream) {
+ 				files.add(entry);
+			}
+
+		} catch(IOException e) {
+
+		}
+
+		return files;
 	}
 }

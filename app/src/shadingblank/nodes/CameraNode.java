@@ -73,7 +73,7 @@ public class CameraNode extends Node {
 
 	public Matrix4f getProjectionMat() {
 		projection.identity();
-		projection.perspective(fov.value, size[0]/size[1], 0.001f, 1000f);
+		projection.perspective((float)Math.toRadians(fov.value), size[0]/size[1], 0.001f, 1000f);
 		return projection;
 	}
 }
