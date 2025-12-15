@@ -43,10 +43,10 @@ public class MainSpace extends Panel {
 
 	private ImVec2 pos;
 	private ImVec2 modelViewSize;
-	private float[] viewportSize;
+	//private float[] viewportSize;
 
-	private ToolsModule toolsModule1;
-	private ResourceVisor resourceVisor;
+	public ToolsModule toolsModule1;
+	public ResourceVisor resourceVisor;
 
 	private ImGuiStyle style;
 
@@ -55,7 +55,7 @@ public class MainSpace extends Panel {
 		pos = new ImVec2();
 		modelViewSize = new ImVec2();
 
-		viewportSize = new float[2];
+		//viewportSize = new float[2];
 		style = ImGui.getStyle();
 
 		style.setChildRounding(5f);
@@ -106,6 +106,7 @@ public class MainSpace extends Panel {
 
 		// -------- workspace --------
 
+/*
 		if (ImGui.getWindowWidth() >= modelViewSize.x) {
 			ImGui.beginChild("modelName", childFlags, childWindowFlags);
 		} else {
@@ -117,7 +118,12 @@ public class MainSpace extends Panel {
 		viewportSize[1] = modelViewSize.y;
 		ImGui.image(buffer.buffer.getTexture(), modelViewSize);
 
+
 		ImGui.endChild();
+
+*/
+		toolsModule1.viewport();
+		modelViewSize.set(toolsModule1.viewportSize()[0],toolsModule1.viewportSize()[1]);
 
 		// ----------
 
@@ -158,7 +164,7 @@ public class MainSpace extends Panel {
 	}
 
 	public float[] getViewportSize() {
-		return viewportSize;
+		return toolsModule1.viewportSize();
 	}
 
 	float[] windowBg = new float[4];

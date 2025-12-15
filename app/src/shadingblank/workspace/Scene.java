@@ -10,6 +10,4 @@ public class Scene {
 		resources = new ResourceManager();
 		nodes = new NodeManager();
 	}
-
-	
 }

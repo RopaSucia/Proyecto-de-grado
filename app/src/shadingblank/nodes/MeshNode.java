@@ -27,6 +27,11 @@ public class MeshNode extends Node{
 		this.mesh = mesh;
 	}
 
+	public MeshNode(String name, Mesh mesh, boolean removable) {
+		this(name, mesh);
+		this.removable = removable;
+	}
+
 	public Mesh getMesh() {
 		return mesh;
 	}

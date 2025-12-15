@@ -29,6 +29,8 @@ public class FilesManager {
 		}
 	}
 
+	// -------- DIRECTORIES --------
+
 	public static List<Path> getDirectoryFiles(String path) {
 
 		Path dir = Paths.get(path);
@@ -46,5 +48,19 @@ public class FilesManager {
 		}
 
 		return files;
+	}
+
+	public static String parent(String path) {
+
+		String parent = path;
+
+		Path pathParent = Paths.get(path).getParent();
+
+		if(pathParent != null) {
+			parent = pathParent.toString();
+		}
+
+		return parent;
+
 	}
 }

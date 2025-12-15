@@ -57,8 +57,6 @@ public class Launcher extends Motor{
 
 		FilesManager.getDirectoryFiles("C:\\Users\\USER\\Desktop");
 
-		frame = new FrameBuffer(800, 600);
-		frameNode = new ViewportNode("custom buffer", frame);
 		vertexShader = new Shader("basicVertex.vert", vertexSrc, Shader.VERTEX_SHADER);
 
 		fragmentShader = new Shader("basicFragment.frag", fragmentScr, Shader.FRAGMENT_SHADER);
@@ -86,9 +84,16 @@ public class Launcher extends Motor{
 		resourceManager.add(fragmentShader);
 		resourceManager.add(mesh);
 
+		frameNode =	(ViewportNode)scene.nodes.createViewportNode("custom");
+		frame = frameNode.buffer;
+
+		scene.nodes.createMeshNode("node");
+		scene.nodes.createCameraNode("camera");
+		scene.nodes.createViewportNode("viewport");
+/*
 		scene.nodes.add(meshN);
 		scene.nodes.add(camera);
-		scene.nodes.add(frameNode);
+		scene.nodes.add(frameNode);*/
 
 		window.addLayer(space);
 		window.addLayer(diag);

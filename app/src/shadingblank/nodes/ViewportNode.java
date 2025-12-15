@@ -15,7 +15,6 @@ public class ViewportNode extends Node{
 
 		bufferSize = new Attribute2f("size", this, buffer.getXSize(), buffer.getYSize());
 		bgColor = new ColorAttribute("background color", this, buffer.color);
-
 	}
 
 	public ViewportNode(String name) {
@@ -25,6 +24,18 @@ public class ViewportNode extends Node{
 
 	public ViewportNode(String name, int height, int width) {
 		this(name, new FrameBuffer(height, width));
+	}
+
+	// with removable
+
+	public ViewportNode(String name, boolean removable) {
+		this(name);
+		this.removable = removable;
+	}
+
+	public ViewportNode(String name, int height, int width, boolean removable) {
+		this(name, height, width);
+		this.removable = removable;
 	}
 
 	public void update() {

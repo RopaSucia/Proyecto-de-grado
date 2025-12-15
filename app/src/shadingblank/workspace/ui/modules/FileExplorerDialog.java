@@ -61,11 +61,8 @@ public class FileExplorerDialog extends Panel {
 
 				// -------- FILE DIRECTION BAR --------
 
-				if(ImGui.button("return-directory") && !currentDirectory.toString().equals("C:\\")) {
-					Path gp =currentDirectory.getParent();
-					if(gp != null) {
-						directory(gp.toString());
-					}
+				if(ImGui.button("return-directory")) {
+					directory(FilesManager.parent(path.get()));
 				}
 				ImGui.sameLine();
 
@@ -104,9 +101,9 @@ public class FileExplorerDialog extends Panel {
 							ImGui.tableSetColumnIndex(0);
 
 							// file/directory select button
-
 							String fn = file.getFileName().toString(); // filename
-							boolean isDirectory = type[(files.indexOf(file) >= 0) ? files.indexOf(file): 0];
+
+							boolean isDirectory = Files.isDirectory(file);
 
 							if(ImGui.button(fn)) {
 								if(isDirectory) {

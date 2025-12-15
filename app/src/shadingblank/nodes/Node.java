@@ -4,12 +4,21 @@ public class Node {
 
 	public static final String type = "Node";
 	public final TextAttribute name;
+	public boolean removable;
+	
+	public boolean closed = false;
 
 	public NodeAttribute[] attributes;
 	public int index = 0;
 
 	public Node(String name) {
 		this.name = new TextAttribute("name", this, name);
+		removable = true;
+	}
+
+	public Node(String name, boolean removable) {
+		this.name = new TextAttribute("name", this, name);
+		this.removable = removable;
 	}
 
 	public void addAttribute(NodeAttribute attribute) throws DuplicateNameAttributeException {

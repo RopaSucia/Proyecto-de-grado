@@ -26,7 +26,7 @@ public class NodeCreatorDialog extends Panel{
 		ImGuiWindowFlags.NoResize;
 
 	private static final String [] types = {
-		"node", "mesh", "camera", "frame"
+		"node", "mesh", "camera", "viewport"
 	};
 
 	private String selected = types[0];
@@ -57,7 +57,6 @@ public class NodeCreatorDialog extends Panel{
 			ImGui.sameLine();
 			ImGui.inputText(" ", newNodeName);
 			
-			ImGui.setNextWindowFocus();
 			if(ImGui.beginCombo("###nodeType", selected)) {
 				
 				for(String type: types) {
@@ -75,7 +74,23 @@ public class NodeCreatorDialog extends Panel{
 			}
 
 			if(ImGui.button("create")) {
-				manager.createNode(newNodeName.get());
+
+				switch (selected) {
+					case "node":
+							manager.createNode(newNodeName.get());
+						break;
+					case "mesh":
+							manager.createMeshNode(newNodeName.get());
+						break;
+					case "camera":
+							manager.createCameraNode(newNodeName.get());
+						break;
+					case "viewport":
+							manager.createViewportNode(newNodeName.get());
+						break;		
+					default:
+						break;
+				}
 				newNodeName.clear();
 				open = false;
 			}

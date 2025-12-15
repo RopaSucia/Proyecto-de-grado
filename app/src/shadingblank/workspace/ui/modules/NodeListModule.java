@@ -49,8 +49,14 @@ public class NodeListModule extends Panel {
 					ImGui.pushStyleColor(ImGuiCol.Button, 0, 0, 0, 0);
 					ImGui.pushStyleVar(ImGuiStyleVar.FramePadding, 4f, 3f);
 
-					if (ImGui.button(node.name.value)) {
+					if (ImGui.button(node.name.value, ImGui.getContentRegionAvailX() - 50, 20)) { // node name
 						currentNode = node;
+					}
+
+					ImGui.sameLine();
+
+					if(ImGui.button("dlt")) {
+						nodeManager.blackList(node);
 					}
 
 					ImGui.tableSetColumnIndex(1);
@@ -58,9 +64,12 @@ public class NodeListModule extends Panel {
 					ImGui.popStyleVar();
 					ImGui.popStyleColor();
 				}
+
 			}
 
 			ImGui.endTable();
+			nodeManager.clearBlackList();
+
 		}
 		ImGui.endChild();
 		ImGui.popStyleColor();

@@ -32,6 +32,11 @@ public class CameraNode extends Node {
 		angles = new Attribute3f("angle", this, 0, 0, 0);
 	}
 
+	public CameraNode(String name, float size[], boolean removable) {
+		this(name, size);
+		this.removable = removable;
+	}
+
 	public void rotateX(float angle) {
 		angles.addX(angle);
 	}
