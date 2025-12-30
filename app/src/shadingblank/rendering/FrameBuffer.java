@@ -3,7 +3,6 @@ package shadingblank.rendering;
 import static org.lwjgl.opengl.GL33.*;
 
 import java.nio.*;
-import org.lwjgl.BufferUtils;
 
 public class FrameBuffer {
 

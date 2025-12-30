@@ -2,6 +2,7 @@ package shadingblank;
 
 import static org.lwjgl.opengl.GL33.*;
 import shadingblank.workspace.ResourceManager;
+import shadingblank.workspace.Scene;
 import shadingblank.workspace.NodeManager;
 
 public abstract class Motor {
@@ -9,19 +10,23 @@ public abstract class Motor {
 	public String title = "-";
 	public int height = 800, width = 1400;
 
-	public Window window;
-	public EventsManager eventsManager;
+	public final Window window;
+	public final EventsManager events;
+	public final RenderManager render;
+	public final Time time;
 
-	public ResourceManager resourceManager;
+	public Scene scene;
 
 	public abstract void init();
-	public abstract void loop();
+	public abstract void loop(float delta);
 	public abstract void close();
 
-	public void start() {
+	public Motor () {
 		window = new Window(height, width, title);
-		eventsManager = new EventsManager(window);
-		resourceManager = new ResourceManager();
+		events = new EventsManager(window);
+		render = new RenderManager();
+		time = new Time();
+		scene = new Scene();
 
 		init();
 		update();
@@ -36,8 +41,10 @@ public abstract class Motor {
 
 	public void update() {
 			while(!window.isWindowClosed()) {
+			time.update();
 
-			loop();
+			loop((float)time.getDeltaTime());
+			render.draw();
 
 			window.update();
 			glClear(GL_COLOR_BUFFER_BIT);

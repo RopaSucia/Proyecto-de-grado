@@ -3,12 +3,13 @@ package shadingblank.workspace;
 import java.util.List;
 import java.util.ArrayList;
 
+import shadingblank.CurrentInstance;
 import shadingblank.nodes.CameraNode;
 import shadingblank.nodes.MeshNode;
 import shadingblank.nodes.Node;
 import shadingblank.nodes.ViewportNode;
 
-public class NodeManager {
+public class NodeManager{
 
 	public final List<Node> nodes;
 	public final List<Node> blackList;
@@ -19,7 +20,7 @@ public class NodeManager {
 
 	private int index;
 
-	public NodeManager() {
+	public NodeManager(){
 		nodes = new ArrayList<>();
 		blackList = new ArrayList<>();
 
@@ -55,7 +56,7 @@ public class NodeManager {
 	}
 
 	public MeshNode createMeshNode(String name) {
-		MeshNode node = new MeshNode(name + "meshNode-" + index, null);
+		MeshNode node = new MeshNode(name + "meshNode-" + index);
 		meshNodes.add(node);
 		index++;
 		nodes.add(node);

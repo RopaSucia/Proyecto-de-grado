@@ -17,7 +17,9 @@ public class SortAttributes {
 	private final List<TextAttribute> attTxt;
 	private final List<ColorAttribute> attCol;
 
-	public int size1f, size2f, size3f, size4f, sizeTxt, sizeCol;
+	private final List<ShaderAttribute> attSha;
+
+	public int size1f, size2f, size3f, size4f, sizeTxt, sizeCol, sizeSha;
 
 	public SortAttributes(NodeAttribute[] attributes) {
 		this.attributes = attributes;
@@ -29,7 +31,7 @@ public class SortAttributes {
 
 		attTxt = new ArrayList<>();
 		attCol = new ArrayList<>();
-
+		attSha = new ArrayList<>();
 		// son número
 
 		for (NodeAttribute att : this.attributes) {
@@ -71,6 +73,10 @@ public class SortAttributes {
 				if(matcher.group().equals("col")) {
 					attCol.add((ColorAttribute)att);
 				}
+
+				if(matcher.group().equals("sha")) {
+					attSha.add((ShaderAttribute)att);
+				}
 			}
 		}
 
@@ -81,7 +87,7 @@ public class SortAttributes {
 
 		sizeTxt = attTxt.size();
 		sizeCol = attCol.size();
-
+		sizeSha = attSha.size();
 	}
 
 	public void getAttributes1f(Attribute1f[] attributes) {
@@ -108,6 +114,10 @@ public class SortAttributes {
 		attCol.toArray(attributes);
 	}
 
+	public void getAttributesShader(ShaderAttribute[] attributes) {
+		attSha.toArray(attributes);
+	}
+
 	public List<Attribute1f> getAttributes1f() {
 		return att1f;
 	}
@@ -130,5 +140,9 @@ public class SortAttributes {
 
 	public List<ColorAttribute> getAttributesCol() {
 		return attCol;
+	}
+
+	public List<ShaderAttribute> getAttributeShader() {
+		return attSha;
 	}
 }

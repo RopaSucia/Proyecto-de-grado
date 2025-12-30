@@ -5,12 +5,13 @@ import java.util.List;
 import imgui.ImGui;
 import imgui.flag.ImGuiChildFlags;
 import imgui.flag.ImGuiWindowFlags;
+import shadingblank.CurrentInstance;
 import shadingblank.nodes.CameraNode;
 import shadingblank.nodes.ViewportNode;
 import shadingblank.rendering.FrameBuffer;
 import shadingblank.workspace.ui.Panel;
 
-public class Viewport3DModule extends Panel {
+public class Viewport3DModule extends Panel implements CurrentInstance{
 
 	private static int instances;
 
@@ -67,6 +68,7 @@ public class Viewport3DModule extends Panel {
 
 					if (ImGui.selectable(viewportNode.name.value, isActive)) {
 						currentViewport = viewportNode;
+						instance.workspace.viewport = currentViewport;
 					}
 				}
 
@@ -92,6 +94,7 @@ public class Viewport3DModule extends Panel {
 
 					if (ImGui.selectable(cameraNode.name.value, isActive)) {
 						currentCamera = cameraNode;
+						instance.workspace.camera = currentCamera;
 					}
 				}
 

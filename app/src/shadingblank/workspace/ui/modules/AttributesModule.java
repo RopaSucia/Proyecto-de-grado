@@ -12,6 +12,7 @@ import shadingblank.nodes.Attribute4f;
 import shadingblank.nodes.ColorAttribute;
 import shadingblank.nodes.Node;
 import shadingblank.nodes.NodeAttribute;
+import shadingblank.nodes.ShaderAttribute;
 import shadingblank.nodes.SortAttributes;
 import shadingblank.nodes.TextAttribute;
 
@@ -31,6 +32,7 @@ public class AttributesModule implements GuiLayer {
 
 	TextAttribute[] textAttributes;
 	ColorAttribute[] colAttributes;
+	ShaderAttribute[] shaAttributes;
 
 	SortAttributes sorter;
 
@@ -56,6 +58,7 @@ public class AttributesModule implements GuiLayer {
 
 			textAttributes = new TextAttribute[sorter.sizeTxt];
 			colAttributes = new ColorAttribute[sorter.sizeCol];
+			shaAttributes = new ShaderAttribute[sorter.sizeSha];
 
 			sorter.getAttributes1f(attribute1f);
 			sorter.getAttributes2f(attribute2f);
@@ -64,6 +67,7 @@ public class AttributesModule implements GuiLayer {
 
 			sorter.getAttributesTxt(textAttributes);
 			sorter.getAttributesCol(colAttributes);
+			sorter.getAttributesShader(shaAttributes);
 		}
 	}
 
@@ -115,6 +119,11 @@ public class AttributesModule implements GuiLayer {
 				ImGui.sameLine();
 				ImGui.inputFloat("X" + index++, float1);
 				att.value = float1.get();
+			}
+
+			for (ShaderAttribute att : shaAttributes) {
+				ImGui.text(att.name);
+				ImGui.image(1, 100f, 100f);
 			}
 		}
 

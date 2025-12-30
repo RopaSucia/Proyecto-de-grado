@@ -50,7 +50,7 @@ public class MainSpace extends Panel {
 
 	private ImGuiStyle style;
 
-	public MainSpace(ViewportNode buffer, NodeManager nm, ResourceManager rm) {
+	public MainSpace() {
 		this.buffer = buffer;
 		pos = new ImVec2();
 		modelViewSize = new ImVec2();
@@ -65,9 +65,9 @@ public class MainSpace extends Panel {
 		style.setFrameRounding(5f);
 		style.setChildBorderSize(0);
 
-		toolsModule1 = new ToolsModule(nm, rm);
+		toolsModule1 = new ToolsModule(scene.nodes, scene.resources);
 
-		resourceVisor = new ResourceVisor(Launcher.instance.resourceManager.getResources());
+		resourceVisor = new ResourceVisor();
 	}
 
 	@Override
