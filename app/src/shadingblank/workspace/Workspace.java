@@ -57,10 +57,13 @@ public class Workspace implements CurrentInstance {
 					camera.rotateX((float) (mousePos[1] - lastMousePos[1]) / -5f);
 					camera.rotateY((float) (mousePos[0] - lastMousePos[0]) / 5f);
 				}
+				if(render.currentShaderProgram != null) {
+					render.currentShaderProgram.uniformMat4("view", camera.getViewMat());
+					render.currentShaderProgram.uniformMat4("projection", camera.getProjectionMat());
+				}
 			}
 
 			render.draw();
-
 			buffer.close();
 
 		}

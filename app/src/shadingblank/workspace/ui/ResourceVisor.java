@@ -5,7 +5,6 @@ import java.util.List;
 import imgui.ImGui;
 import imgui.ImVec2;
 import imgui.flag.ImGuiCol;
-import shadingblank.CurrentInstance;
 import shadingblank.rendering.Resource;
 
 public class ResourceVisor extends Panel{

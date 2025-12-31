@@ -2,7 +2,6 @@ package shadingblank.workspace.ui.modules;
 
 import shadingblank.workspace.NodeManager;
 import shadingblank.workspace.ui.Panel;
-import imgui.type.ImBoolean;
 import imgui.type.ImString;
 import imgui.ImGui;
 import imgui.flag.ImGuiWindowFlags;
@@ -29,9 +28,7 @@ public class NodeCreatorDialog extends Panel{
 		this.manager = manager;
 
 		newNodeName = new ImString(10);
-		entyNode = new ImBoolean();
 	}
-
 
 	@Override
 	public void update() {

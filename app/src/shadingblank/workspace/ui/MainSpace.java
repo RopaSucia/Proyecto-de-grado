@@ -73,7 +73,16 @@ public class MainSpace extends Panel {
 
 		ImGui.begin(" ", windowFlags);
 
-		// -------- Menu bar --------
+		// -------- MENU BAR --------
+/*
+		if(ImGui.beginMenuBar()) {
+			ImGui.menuItem("files");
+			ImGui.menuItem("edit");
+			ImGui.menuItem("tools");
+			ImGui.endMenuBar();
+		}*/
+
+		// -------- SECCTIONS --------
 
 		ImVec2 available = ImGui.getContentRegionAvail();
 
@@ -81,15 +90,15 @@ public class MainSpace extends Panel {
 		if (ImGui.beginMenuBar()) {
 			if (ImGui.beginTabBar("menubar-tab")) {
 
-				if (ImGui.beginTabItem("files")) {
+				if (ImGui.beginTabItem("scene")) {
 					ImGui.endTabItem();
 				}
 
-				if (ImGui.beginTabItem("edit")) {
+				if (ImGui.beginTabItem("nodes")) {
 					ImGui.endTabItem();
 				}
 
-				if (ImGui.beginTabItem("tools")) {
+				if (ImGui.beginTabItem("render")) {
 					ImGui.endTabItem();
 				}
 
@@ -102,22 +111,6 @@ public class MainSpace extends Panel {
 
 		// -------- workspace --------
 
-/*
-		if (ImGui.getWindowWidth() >= modelViewSize.x) {
-			ImGui.beginChild("modelName", childFlags, childWindowFlags);
-		} else {
-			ImGui.beginChild("modelName", passiveChildFlags, childWindowFlags);
-		}
-		buffer.update();
-		modelViewSize = ImGui.getWindowSize();
-		viewportSize[0] = modelViewSize.x;
-		viewportSize[1] = modelViewSize.y;
-		ImGui.image(buffer.buffer.getTexture(), modelViewSize);
-
-
-		ImGui.endChild();
-
-*/
 		toolsModule1.viewport();
 		modelViewSize.set(toolsModule1.viewportSize()[0],toolsModule1.viewportSize()[1]);
 

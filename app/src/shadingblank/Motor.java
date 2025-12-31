@@ -22,9 +22,10 @@ public abstract class Motor {
 	public Motor () {
 		window = new Window(height, width, title);
 		events = new EventsManager(window);
-		render = new RenderManager();
-		time = new Time();
 		scene = new Scene();
+
+		render = new RenderManager(scene.nodes);
+		time = new Time();
 
 		init();
 		update();

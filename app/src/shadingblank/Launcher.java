@@ -77,7 +77,7 @@ public class Launcher extends Motor{
 		program = new ShaderProgram(vertexShader, fragmentShader, null);
 		program.use();
 
-		render.addMesh(mesh);
+		//render.meshes.add(mesh);
 
 		workspace = new Workspace();
 
@@ -100,6 +100,8 @@ public class Launcher extends Motor{
 		frame = frameNode.buffer;
 
 		meshN = scene.nodes.createMeshNode("node");
+		meshN.shader.value = program;
+		
 		camera = scene.nodes.createCameraNode("camera");
 		scene.nodes.createViewportNode("viewport");
 
