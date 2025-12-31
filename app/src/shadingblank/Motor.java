@@ -1,9 +1,7 @@
 package shadingblank;
 
 import static org.lwjgl.opengl.GL33.*;
-import shadingblank.workspace.ResourceManager;
 import shadingblank.workspace.Scene;
-import shadingblank.workspace.NodeManager;
 
 public abstract class Motor {
 

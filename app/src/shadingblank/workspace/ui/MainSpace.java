@@ -3,10 +3,7 @@ package shadingblank.workspace.ui;
 import imgui.ImGui;
 import imgui.ImGuiStyle;
 import imgui.ImVec2;
-import shadingblank.Launcher;
 import shadingblank.nodes.ViewportNode;
-import shadingblank.workspace.NodeManager;
-import shadingblank.workspace.ResourceManager;
 import imgui.flag.ImGuiWindowFlags;
 import imgui.flag.ImGuiChildFlags;
 import imgui.flag.ImGuiCol;
@@ -51,7 +48,6 @@ public class MainSpace extends Panel {
 	private ImGuiStyle style;
 
 	public MainSpace() {
-		this.buffer = buffer;
 		pos = new ImVec2();
 		modelViewSize = new ImVec2();
 

@@ -13,8 +13,6 @@ import shadingblank.workspace.ui.Panel;
 
 public class FileExplorerDialog extends Panel {
 
-	private static final float padding = 10f;
-
 	ImString path, lastPath, filename;
 
 	List<Path> files;

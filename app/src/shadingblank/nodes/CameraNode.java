@@ -1,7 +1,6 @@
 package shadingblank.nodes;
 
 import org.joml.Matrix4f;
-import org.joml.Vector3f;
 
 public class CameraNode extends Node {
 

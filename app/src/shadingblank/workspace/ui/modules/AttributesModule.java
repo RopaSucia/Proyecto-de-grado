@@ -124,6 +124,13 @@ public class AttributesModule implements GuiLayer {
 			for (ShaderAttribute att : shaAttributes) {
 				ImGui.text(att.name);
 				ImGui.image(1, 100f, 100f);
+				ImGui.sameLine();
+				if(ImGui.beginTable("shaders-dps", 1)) {
+
+					 
+
+					ImGui.endTable();
+				}
 			}
 		}
 

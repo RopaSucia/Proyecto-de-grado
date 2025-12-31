@@ -8,7 +8,7 @@ import imgui.flag.ImGuiCol;
 import shadingblank.CurrentInstance;
 import shadingblank.rendering.Resource;
 
-public class ResourceVisor extends Panel implements CurrentInstance{
+public class ResourceVisor extends Panel{
 
 	private List<Resource> srcs;
 

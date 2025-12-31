@@ -1,7 +1,5 @@
 package shadingblank.imguiconfig;
 
-import shadingblank.Window;
-
 import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;

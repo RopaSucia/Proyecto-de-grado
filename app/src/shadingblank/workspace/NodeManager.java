@@ -3,7 +3,6 @@ package shadingblank.workspace;
 import java.util.List;
 import java.util.ArrayList;
 
-import shadingblank.CurrentInstance;
 import shadingblank.nodes.CameraNode;
 import shadingblank.nodes.MeshNode;
 import shadingblank.nodes.Node;

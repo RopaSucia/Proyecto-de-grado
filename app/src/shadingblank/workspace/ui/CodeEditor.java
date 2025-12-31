@@ -4,8 +4,6 @@ import imgui.ImGui;
 import imgui.flag.ImGuiInputTextFlags;
 import imgui.type.ImString;
 
-import java.nio.ByteBuffer;
-
 public class CodeEditor extends Panel{
 
 	private ImString code;

@@ -5,13 +5,11 @@ import java.util.List;
 import imgui.ImGui;
 import imgui.flag.ImGuiChildFlags;
 import imgui.flag.ImGuiWindowFlags;
-import shadingblank.CurrentInstance;
 import shadingblank.nodes.CameraNode;
 import shadingblank.nodes.ViewportNode;
-import shadingblank.rendering.FrameBuffer;
 import shadingblank.workspace.ui.Panel;
 
-public class Viewport3DModule extends Panel implements CurrentInstance{
+public class Viewport3DModule extends Panel{
 
 	private static int instances;
 

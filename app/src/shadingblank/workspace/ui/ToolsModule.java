@@ -5,6 +5,7 @@ import shadingblank.workspace.NodeManager;
 import shadingblank.workspace.ResourceManager;
 import shadingblank.workspace.ui.modules.AttributesModule;
 import shadingblank.workspace.ui.modules.NodeListModule;
+import shadingblank.workspace.ui.modules.ShaderListModule;
 import shadingblank.workspace.ui.modules.Viewport3DModule;
 
 public class ToolsModule extends Panel {
@@ -14,6 +15,7 @@ public class ToolsModule extends Panel {
 	public final AttributesModule attributesModule;
 	public final NodeListModule nodeListModule;
 	public final Viewport3DModule viewport;
+	public final ShaderListModule shaderListModule;
 
 	public ToolsModule(NodeManager nodeManager, ResourceManager resourceManager) {
 
@@ -21,6 +23,7 @@ public class ToolsModule extends Panel {
 		nodeListModule = new NodeListModule(nodeManager);
 		attributesModule = new AttributesModule();
 		viewport = new Viewport3DModule(nodeManager.viewportNodes, nodeManager.cameraNodes);
+		shaderListModule = new ShaderListModule();
 	}
 
 	@Override
@@ -28,11 +31,6 @@ public class ToolsModule extends Panel {
 
 		if (ImGui.beginTabBar("menu-tools")) { // -------- BEGIN TAB-BAR --------
 
-			if (ImGui.beginTabItem("code")) { // -------- CODE TAB --------
-				ImGui.text("Code editor here");
-
-				ImGui.endTabItem();
-			}
 
 			if (ImGui.beginTabItem("nodes")) { // -------- NODES TAB --------
 
@@ -45,6 +43,19 @@ public class ToolsModule extends Panel {
 
 				attributesModule.getAttributeList(nodeListModule.getFocusedNode());
 				attributesModule.update();
+
+				ImGui.endTabItem();
+			}
+
+			if (ImGui.beginTabItem("code")) { // -------- CODE TAB --------
+				ImGui.text("Code editor here");
+
+				ImGui.endTabItem();
+			}
+
+			if (ImGui.beginTabItem("shaders")) { // -------- SHADERS TAB --------
+
+				shaderListModule.update();
 
 				ImGui.endTabItem();
 			}
@@ -65,7 +76,7 @@ public class ToolsModule extends Panel {
 		viewport.update();
 	}
 
-	public float [] viewportSize() {
+	public float[] viewportSize() {
 		return viewport.viewportSize;
 	}
 }
