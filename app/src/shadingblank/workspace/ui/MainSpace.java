@@ -16,6 +16,7 @@ public class MainSpace extends Panel {
 					ImGuiWindowFlags.NoResize |
 					ImGuiWindowFlags.NoMove |
 					ImGuiWindowFlags.NoScrollbar |
+					ImGuiWindowFlags.MenuBar |
 					ImGuiWindowFlags.NoTitleBar;
 
 	private int childWindowFlags =
@@ -36,7 +37,6 @@ public class MainSpace extends Panel {
 	private int subchildFlags = ImGuiChildFlags.Border |
 			ImGuiChildFlags.ResizeY;
 
-	private ViewportNode buffer;
 
 	private ImVec2 pos;
 	private ImVec2 modelViewSize;
@@ -61,7 +61,7 @@ public class MainSpace extends Panel {
 		style.setFrameRounding(5f);
 		style.setChildBorderSize(0);
 
-		toolsModule1 = new ToolsModule(scene.nodes, scene.resources);
+		toolsModule1 = new ToolsModule();
 
 		resourceVisor = new ResourceVisor();
 	}
@@ -74,13 +74,13 @@ public class MainSpace extends Panel {
 		ImGui.begin(" ", windowFlags);
 
 		// -------- MENU BAR --------
-/*
+
 		if(ImGui.beginMenuBar()) {
 			ImGui.menuItem("files");
 			ImGui.menuItem("edit");
 			ImGui.menuItem("tools");
 			ImGui.endMenuBar();
-		}*/
+		}
 
 		// -------- SECCTIONS --------
 

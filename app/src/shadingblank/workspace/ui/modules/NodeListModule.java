@@ -18,9 +18,8 @@ public class NodeListModule extends Panel {
 
 	private int tableFlags = ImGuiTableFlags.RowBg;
 
-	public NodeListModule(NodeManager nodeManager) {
-
-		this.nodeManager = nodeManager;
+	public NodeListModule() {
+		nodeManager = instance.scene.nodes;
 
 		nodeCreator = new NodeCreatorDialog(nodeManager);
 	}

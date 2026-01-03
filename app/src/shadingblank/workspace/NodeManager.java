@@ -72,10 +72,11 @@ public class NodeManager{
 
 	public void deleteNode(Node node) {
 		nodes.remove(node);
+		node.closed = true;
 	}
 
 	public void deleteNode(int index) {
-		nodes.remove(index);
+		nodes.remove(index).closed = true;
 	}
 
 	public void blackList(Node node) {
@@ -84,7 +85,11 @@ public class NodeManager{
 
 	public void clearBlackList() {
 		if (blackList.size() > 0) {
-			nodes.removeAll(blackList);
+
+			for(Node node: blackList) {
+
+				node.closed = true;
+			}
 			blackList.clear();
 		}
 	}

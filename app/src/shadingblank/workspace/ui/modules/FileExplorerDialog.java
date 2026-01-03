@@ -8,7 +8,6 @@ import java.util.List;
 import imgui.ImGui;
 import imgui.flag.ImGuiTableFlags;
 import imgui.type.ImString;
-import shadingblank.FilesManager;
 import shadingblank.workspace.ui.Panel;
 
 public class FileExplorerDialog extends Panel {
@@ -27,6 +26,8 @@ public class FileExplorerDialog extends Panel {
 
 	private boolean open;
 
+	public ExplorerReturnCallback onReturn;
+
 	public FileExplorerDialog() {
 		path = new ImString();
 		lastPath = new ImString();
@@ -36,7 +37,7 @@ public class FileExplorerDialog extends Panel {
 	public void directory(String path) {
 		this.path.set(path);
 
-		files = FilesManager.getDirectoryFiles(path);
+		files = instance.files.getDirectoryFiles(path);
 		currentDirectory = Paths.get(path);
 
 		type = new boolean[files.size()];
@@ -60,7 +61,7 @@ public class FileExplorerDialog extends Panel {
 				// -------- FILE DIRECTION BAR --------
 
 				if(ImGui.button("return-directory")) {
-					directory(FilesManager.parent(path.get()));
+					directory(instance.files.parent(path.get()));
 				}
 				ImGui.sameLine();
 
@@ -133,6 +134,7 @@ public class FileExplorerDialog extends Panel {
 				ImGui.sameLine();
 
 				if (ImGui.button("select"))
+					onReturn.call();
 					open = false;
 				ImGui.sameLine();
 

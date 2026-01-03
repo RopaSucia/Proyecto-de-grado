@@ -11,6 +11,7 @@ public abstract class Motor {
 	public final Window window;
 	public final EventsManager events;
 	public final RenderManager render;
+	public final FilesManager files;
 	public final Time time;
 
 	public Scene scene;
@@ -22,6 +23,7 @@ public abstract class Motor {
 	public Motor () {
 		window = new Window(height, width, title);
 		events = new EventsManager(window);
+		files = new FilesManager();
 		scene = new Scene();
 
 		render = new RenderManager(scene.nodes);

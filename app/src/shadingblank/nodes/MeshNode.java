@@ -1,6 +1,7 @@
 package shadingblank.nodes;
 
 import shadingblank.rendering.Mesh;
+import shadingblank.rendering.ShaderProgram;
 
 import org.joml.Matrix4f;
 
@@ -72,11 +73,11 @@ public class MeshNode extends Node{
 
 		model.translate(position.getX(), position.getY(), position.getZ());
 
-		model.scale(scale.getX(), scale.getY(), scale.getZ());
-
 		model.rotateX((float)Math.toRadians(angle.getX()));
 		model.rotateY((float)Math.toRadians(angle.getY()));
 		model.rotateZ((float)Math.toRadians(angle.getZ()));
+
+		model.scale(scale.getX(), scale.getY(), scale.getZ());
 
 		return model;
 	}

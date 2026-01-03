@@ -33,6 +33,10 @@ public class Workspace implements CurrentInstance {
 			buffer.begin();
 
 			if (camera != null) {
+
+				camera.height = instance.UIroot.toolsModule1.viewportSize()[0];
+				camera.width = instance.UIroot.toolsModule1.viewportSize()[1];
+
 				if (events.isKeyPressed('W')) {
 					camera.moveZ(1f * delta);
 				}

@@ -10,19 +10,16 @@ import shadingblank.workspace.ui.modules.Viewport3DModule;
 
 public class ToolsModule extends Panel {
 
-	// private ResourceManager resourceManager;
-
 	public final AttributesModule attributesModule;
 	public final NodeListModule nodeListModule;
 	public final Viewport3DModule viewport;
 	public final ShaderListModule shaderListModule;
 
-	public ToolsModule(NodeManager nodeManager, ResourceManager resourceManager) {
+	public ToolsModule() {
 
-		// this.resourceManager = resourceManager;
-		nodeListModule = new NodeListModule(nodeManager);
+		nodeListModule = new NodeListModule();
 		attributesModule = new AttributesModule();
-		viewport = new Viewport3DModule(nodeManager.viewportNodes, nodeManager.cameraNodes);
+		viewport = new Viewport3DModule();
 		shaderListModule = new ShaderListModule();
 	}
 

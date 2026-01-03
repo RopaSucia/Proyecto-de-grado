@@ -1,13 +1,33 @@
 package shadingblank;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import shadingblank.workspace.ui.modules.ExplorerReturnCallback;
+
 public class FilesManager {
 
-	public static String getString(String path) {
+	private Path lastPath;
+
+	public final String USERHOME;
+
+	public final ExplorerReturnCallback returnCallback;
+
+	public FilesManager() {
+		USERHOME = System.getProperty("user.home");
+		
+		returnCallback = new ExplorerReturnCallback() {
+			@Override
+			public void call(ByteBuffer bytes) {
+				
+			}	
+		};
+	}
+
+	public String getString(String path) {
 		try{
 			Path pathFile = Paths.get(path);
 			return Files.readString(pathFile);
@@ -18,7 +38,7 @@ public class FilesManager {
 		}
 	}
 
-	public static byte[] getBytes(String path) {
+	public byte[] getBytes(String path) {
 		try{
 			Path pathFile = Paths.get(path);
 			return Files.readAllBytes(pathFile);
@@ -31,7 +51,7 @@ public class FilesManager {
 
 	// -------- DIRECTORIES --------
 
-	public static List<Path> getDirectoryFiles(String path) {
+	public List<Path> getDirectoryFiles(String path) {
 
 		Path dir = Paths.get(path);
 
@@ -50,7 +70,7 @@ public class FilesManager {
 		return files;
 	}
 
-	public static String parent(String path) {
+	public String parent(String path) {
 
 		String parent = path;
 
@@ -61,6 +81,10 @@ public class FilesManager {
 		}
 
 		return parent;
+
+	}
+
+	public void explorer() {
 
 	}
 }

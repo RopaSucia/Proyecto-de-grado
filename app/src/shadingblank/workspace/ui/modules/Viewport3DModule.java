@@ -33,11 +33,11 @@ public class Viewport3DModule extends Panel{
 					ImGuiChildFlags.ResizeY;
 
 
-	public Viewport3DModule(List<ViewportNode> viewports, List<CameraNode> cameras) {
+	public Viewport3DModule() {
 		viewportSize = new float[] { 800, 600 };
 
-		this.viewports = viewports;
-		this.cameras = cameras;
+		this.viewports = nodes.viewportNodes;
+		this.cameras = nodes.cameraNodes;
 
 		instances ++;
 	}
@@ -50,9 +50,20 @@ public class Viewport3DModule extends Panel{
 		viewportSize[0] = ImGui.getWindowWidth();
 		viewportSize[1] = ImGui.getWindowHeight();
 
+		boolean goodCamera = true, goodViewport = true;
+
+		if(currentCamera == null || currentCamera.closed) {
+			goodCamera = false;
+		}
+
+
+		if(currentViewport == null || currentViewport.closed) {
+			goodViewport = false;
+		}
+
 		if (viewports.size() > 0) {
 
-			String current = (currentViewport != null) ? currentViewport.name.value: "select";
+			String current = (goodViewport) ? currentViewport.name.value: "select";
 
 			if (ImGui.beginCombo("###buffer", current)) {
 
@@ -60,7 +71,7 @@ public class Viewport3DModule extends Panel{
 
 					boolean isActive = true;
 
-					if(currentViewport != null) {
+					if(goodViewport) {
 						isActive = viewportNode.name.value.equals(currentViewport.name.value);
 					}
 
@@ -78,7 +89,7 @@ public class Viewport3DModule extends Panel{
 
 		if (cameras.size() > 0) {
 
-			String current = (currentCamera != null) ? currentCamera.name.value: "select";
+			String current = (goodCamera) ? currentCamera.name.value: "select";
 
 			if (ImGui.beginCombo("camera", current)) {
 
@@ -86,7 +97,7 @@ public class Viewport3DModule extends Panel{
 
 					boolean isActive = true;
 
-					if(currentCamera != null) {
+					if(goodCamera) {
 						isActive = cameraNode.name.value.equals(currentCamera.name.value);
 					}
 
@@ -104,7 +115,7 @@ public class Viewport3DModule extends Panel{
 
 		// -------- SHOW BUFFER --------
 
-		if (currentViewport != null) {
+		if (goodViewport) {
 			if (currentViewport.closed == false)
 				ImGui.image(currentViewport.buffer.getTexture(), viewportSize[0], viewportSize[1]);
 
@@ -112,7 +123,7 @@ public class Viewport3DModule extends Panel{
 			ImGui.text("Sin buffer seleccionado");
 		}
 
-		if (currentCamera != null) {
+		if (goodCamera) {
 			if (currentCamera.closed == false)
 				ImGui.text("Sin Camara seleccionada");
 

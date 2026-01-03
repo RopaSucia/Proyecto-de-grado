@@ -22,10 +22,7 @@ public class Launcher extends Motor{
 
 	Shader vertexShader;
 	Shader fragmentShader;
-	ShaderProgram program;
-
-	MeshNode meshN;
-	CameraNode camera;
+	public ShaderProgram customProgram;
 
 	Texture tex, texFer;
 
@@ -41,6 +38,8 @@ public class Launcher extends Motor{
 
 	public Workspace workspace;
 
+	public MainSpace UIroot;
+
 	public Launcher() {
 		super();
 	}
@@ -52,8 +51,8 @@ public class Launcher extends Motor{
 
 		title = "ShadingBlank";
 
-		vertexSrc = FilesManager.getString("resources/basicVertex.vert");
-		fragmentSrc = FilesManager.getString("resources/basicFragment.frag");
+		vertexSrc = files.getString("resources/basicVertex.vert");
+		fragmentSrc = files.getString("resources/basicFragment.frag");
 
 		imagen = "C:\\Users\\USER\\Desktop\\ShadingBlank\\app\\resources\\Captura.PNG";
 
@@ -67,21 +66,20 @@ public class Launcher extends Motor{
 		});
 		backgroundColor(0, 0, 1, 1);
 
-		FilesManager.getDirectoryFiles("C:\\Users\\USER\\Desktop");
+		files.getDirectoryFiles("C:\\Users\\USER\\Desktop");
 
 		vertexShader = new Shader("basicVertex.vert", vertexSrc, Shader.VERTEX_SHADER);
 
 		fragmentShader = new Shader("basicFragment.frag", fragmentSrc, Shader.FRAGMENT_SHADER);
 
-
-		program = new ShaderProgram(vertexShader, fragmentShader, null);
-		program.use();
+		customProgram = new ShaderProgram(vertexShader, fragmentShader, null);
+		customProgram.use();
 
 		//render.meshes.add(mesh);
 
 		workspace = new Workspace();
 
-		MainSpace space = new MainSpace();
+		UIroot = new MainSpace();
 
 		explorer = new FileExplorerDialog();
 		explorer.directory("C:\\Users\\USER\\Desktop");
@@ -99,13 +97,12 @@ public class Launcher extends Motor{
 		frameNode =	(ViewportNode)scene.nodes.createViewportNode("custom");
 		frame = frameNode.buffer;
 
-		meshN = scene.nodes.createMeshNode("node");
-		meshN.shader.value = program;
-		
-		camera = scene.nodes.createCameraNode("camera");
+		scene.nodes.createMeshNode("node");
+
+		scene.nodes.createCameraNode("camera");
 		scene.nodes.createViewportNode("viewport");
 
-		window.addLayer(space);
+		window.addLayer(UIroot);
 		window.addLayer(explorer);
 
 		frame.bgColor(0, 1, 1, 1);
@@ -118,12 +115,9 @@ public class Launcher extends Motor{
 
 	@Override
 	public void loop(float delta) {
-		frame.begin();
 
 		workspace.update(delta);
-
-		frame.close();
-		window.backgroundColor(0, 0, 1, 1);
+		window.backgroundColor(0, 0, 0, 0);
 
 	}
 

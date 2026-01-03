@@ -12,6 +12,7 @@ public interface CurrentInstance {
 
 	public Scene scene = instance.scene;
 	public NodeManager nodes = scene.nodes;
+	public FilesManager files = instance.files;
 	public EventsManager events = instance.events;
 	public RenderManager render = instance.render;
 	public ResourceManager resources = scene.resources;

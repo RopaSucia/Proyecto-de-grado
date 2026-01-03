@@ -15,12 +15,13 @@ public class CameraNode extends Node {
 	public final Attribute3f pos;
 	public final Attribute3f angles;
 
-	private float [] size = {1f, 1f};
+	public float width, height;
 
 	public CameraNode(String name, float [] size) {
 		super(name);
 
-		this.size = size;
+		this.height = size[0];
+		this.width = size[1];
 
 		view = new Matrix4f();
 		projection = new Matrix4f();
@@ -77,7 +78,7 @@ public class CameraNode extends Node {
 
 	public Matrix4f getProjectionMat() {
 		projection.identity();
-		projection.perspective((float)Math.toRadians(fov.value), size[0]/size[1], 0.001f, 1000f);
+		projection.perspective((float)Math.toRadians(fov.value), height/width, 0.001f, 1000f);
 		return projection;
 	}
 }
