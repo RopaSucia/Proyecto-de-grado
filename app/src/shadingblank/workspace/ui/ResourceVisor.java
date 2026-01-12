@@ -18,8 +18,9 @@ public class ResourceVisor extends Panel{
 	public void resourceVisor() {
 
 		if(ImGui.button("load")) {
-			instance.explorer.directory("");
+			instance.explorer.load(files.USERHOME + "/", instance.explorer.SHADER);
 		}
+
 
 		if (resources != null) {
 			ImGui.pushStyleColor(ImGuiCol.ChildBg, .2f, .2f, .2f, 1f);

@@ -34,7 +34,7 @@ public class Launcher extends Motor{
 
 	String imagen;
 
-	public FileExplorerDialog explorer;
+	public Explorer explorer;
 
 	public Workspace workspace;
 
@@ -75,14 +75,11 @@ public class Launcher extends Motor{
 		customProgram = new ShaderProgram(vertexShader, fragmentShader, null);
 		customProgram.use();
 
-		//render.meshes.add(mesh);
-
 		workspace = new Workspace();
 
 		UIroot = new MainSpace();
 
-		explorer = new FileExplorerDialog();
-		explorer.directory("C:\\Users\\USER\\Desktop");
+		explorer = new Explorer();
 		scene.nodes.createNode("nodoWebon");
 
 		tex = new Texture("Advance-War", imagen);
@@ -103,8 +100,7 @@ public class Launcher extends Motor{
 		scene.nodes.createViewportNode("viewport");
 
 		window.addLayer(UIroot);
-		window.addLayer(explorer);
-
+		
 		frame.bgColor(0, 1, 1, 1);
 	}
 

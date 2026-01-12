@@ -24,19 +24,20 @@ public class FileExplorerDialog extends Panel {
 
 	ImGuiTableFlags.RowBg | ImGuiTableFlags.ScrollY;
 
+	private ExplorerReturnCallback callback;
+
 	private boolean open;
 
-	public ExplorerReturnCallback onReturn;
+	public FileExplorerDialog(ExplorerReturnCallback callback) {
+		path = new ImString(1024);
+		lastPath = new ImString(1024);
+		filename = new ImString(1024);
 
-	public FileExplorerDialog() {
-		path = new ImString();
-		lastPath = new ImString();
-		filename = new ImString();
+		this.callback = callback;
 	}
 
 	public void directory(String path) {
 		this.path.set(path);
-
 		files = instance.files.getDirectoryFiles(path);
 		currentDirectory = Paths.get(path);
 
@@ -57,6 +58,7 @@ public class FileExplorerDialog extends Panel {
 
 			ImGui.setNextWindowSize(800, 600);
 			if (ImGui.beginPopupModal("choose one file")) {
+
 
 				// -------- FILE DIRECTION BAR --------
 
@@ -104,9 +106,10 @@ public class FileExplorerDialog extends Panel {
 
 							boolean isDirectory = Files.isDirectory(file);
 
+							// 
 							if(ImGui.button(fn)) {
 								if(isDirectory) {
-									directory(path + "\\" + fn);
+									directory(path.get() + "\\" + fn);
 
 								} else {
 									filename.set(fn);
@@ -116,7 +119,6 @@ public class FileExplorerDialog extends Panel {
 							ImGui.tableSetColumnIndex(1);
 							ImGui.text((isDirectory) ? "directory" : "file");
 							
-
 						}
 					}
 
@@ -133,17 +135,21 @@ public class FileExplorerDialog extends Panel {
 				ImGui.inputText("file-name", filename);
 				ImGui.sameLine();
 
-				if (ImGui.button("select"))
-					onReturn.call();
+				if (ImGui.button("select")){
+					callback.call(path.get() + "\\" + fn);
 					open = false;
+				}
+
 				ImGui.sameLine();
 
-				if (ImGui.button("cancel"))
+				if (ImGui.button("cancel")){
+					callback.call(null);
 					open = false;
+				}
+
 				ImGui.sameLine();
 
 				ImGui.endChild();
-
 				ImGui.endPopup();
 			}
 		}

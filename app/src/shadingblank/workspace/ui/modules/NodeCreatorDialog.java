@@ -71,7 +71,7 @@ public class NodeCreatorDialog extends Panel{
 							manager.createNode(newNodeName.get());
 						break;
 					case "mesh":
-							manager.createMeshNode(newNodeName.get());
+							 manager.createMeshNode(newNodeName.get());
 						break;
 					case "camera":
 							manager.createCameraNode(newNodeName.get());

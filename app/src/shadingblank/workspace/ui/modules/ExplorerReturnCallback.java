@@ -2,6 +2,6 @@ package shadingblank.workspace.ui.modules;
 
 public interface ExplorerReturnCallback {
 
-	public void call();
+	public void call(String dir);
 	 
 }

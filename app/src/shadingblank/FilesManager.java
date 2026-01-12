@@ -14,17 +14,8 @@ public class FilesManager {
 
 	public final String USERHOME;
 
-	public final ExplorerReturnCallback returnCallback;
-
 	public FilesManager() {
 		USERHOME = System.getProperty("user.home");
-		
-		returnCallback = new ExplorerReturnCallback() {
-			@Override
-			public void call(ByteBuffer bytes) {
-				
-			}	
-		};
 	}
 
 	public String getString(String path) {
