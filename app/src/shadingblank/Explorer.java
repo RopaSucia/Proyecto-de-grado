@@ -30,22 +30,26 @@ public class Explorer implements CurrentInstance {
 		returnCallback = new ExplorerReturnCallback() {
 			@Override
 			public void call(String dir) {
-				Path file = Paths.get(dir).toAbsolutePath();
+				if (dir != null) {
+					Path file = Paths.get(dir).toAbsolutePath();
 
-				switch(currentConfiguration) {
+					switch (currentConfiguration) {
 
-					case SHADER:
+						case SHADER:
 
-						toShader(file);
-						break;
+							toShader(file);
+							break;
 
-					case TEXTURE: 
+						case TEXTURE:
 
-						toTexture(file);
-						break;
+							toTexture(file);
+							break;
 
-					case PROJECT: break;
+						case PROJECT:
+							break;
+					}
 				}
+
 			}
 		};
 
@@ -57,13 +61,13 @@ public class Explorer implements CurrentInstance {
 
 		paths = files.getDirectoryFiles(dir);
 		currentConfiguration = type;
-		diag.directory(dir);
+		diag.init(dir);
 
 		return this;
 	}
 
 	private void toShader(Path path) {
-		try{
+		try {
 
 			System.out.println("ruta del shader: " + path.toString());
 
@@ -72,12 +76,11 @@ public class Explorer implements CurrentInstance {
 			System.out.println("el shader resource: " + source);
 
 			Shader shader = new Shader(
-				path.getFileName().toString(),
-				source,
-				Shader.VERTEX_SHADER
-		);
+					path.getFileName().toString(),
+					source,
+					Shader.VERTEX_SHADER);
 
-		resources.add(shader);
+			resources.add(shader);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -88,8 +91,8 @@ public class Explorer implements CurrentInstance {
 	private void toTexture(Path path) {
 		System.out.println("en la textura: " + path.toString());
 		Texture texture = new Texture(
-			path.getFileName().toString(),
-			path.toString());
+				path.getFileName().toString(),
+				path.toString());
 
 		resources.add(texture);
 	}

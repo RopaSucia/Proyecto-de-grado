@@ -12,13 +12,15 @@ import shadingblank.workspace.ui.Panel;
 
 public class FileExplorerDialog extends Panel {
 
-	ImString path, lastPath, filename;
+	private final ImString 
+		directoryPath, // current Dir
+		lastDirectoryPath, // last dir
+		filePath;	// current selected file
 
-	List<Path> files;
 
-	boolean[] type;
+	private boolean[] type;
 
-	Path currentDirectory;
+	private List<Path> directoryElements;
 
 	private int fileListFlags = 
 
@@ -29,28 +31,22 @@ public class FileExplorerDialog extends Panel {
 	private boolean open;
 
 	public FileExplorerDialog(ExplorerReturnCallback callback) {
-		path = new ImString(1024);
-		lastPath = new ImString(1024);
-		filename = new ImString(1024);
+		directoryPath = new ImString(1024);
+		lastDirectoryPath = new ImString(1024);
+		filePath = new ImString(1024);
 
 		this.callback = callback;
 	}
 
-	public void directory(String path) {
-		this.path.set(path);
-		files = instance.files.getDirectoryFiles(path);
-		currentDirectory = Paths.get(path);
-
-		type = new boolean[files.size()];
-		for(int i = 0; i < files.size(); i++) {
-			type[i] = Files.isDirectory(files.get(i));
-		}
+	public void init(String dir) {
+		directoryElements = files.getDirectoryFiles(dir);
+		lastDirectoryPath.set(directoryPath.get());
+		directoryPath.set(dir);
 		open = true;
 	}
 
 	@Override
 	public void update() {
-
 		if (open) {
 			if (!ImGui.isPopupOpen("choose one file")) {
 				ImGui.openPopup("choose one file");
@@ -62,27 +58,32 @@ public class FileExplorerDialog extends Panel {
 
 				// -------- FILE DIRECTION BAR --------
 
-				if(ImGui.button("return-directory")) {
-					directory(instance.files.parent(path.get()));
+
+
+				if(ImGui.button("return-directory")) { // this button return to last directory
+					init(lastDirectoryPath.get());
 				}
+
 				ImGui.sameLine();
 
-				ImGui.inputText("direcction", path);
-				if(!path.get().equals(lastPath.get())) {
-					directory(path.get());
+				// manual directory browser
+
+				ImGui.inputText("direction", directoryPath); 
+				if(!directoryPath.get().equals(lastDirectoryPath.get())) {
+					init(directoryPath.get());
+
 				}
 
 				ImGui.beginChild("Directories-panel", ImGui.getContentRegionAvailX(), 450);
 				childPadding(10f);
 
+
+
 				// -------- LEFT --------
 				ImGui.beginChild("User-directories",  140, ImGui.getContentRegionAvailY());
 				childPadding(10f); // user-drs ^ 
 
-				ImGui.button("Desktop");
-				ImGui.button("Documents");
-				ImGui.button("Music");
-				ImGui.button("3D");
+				directAccess("HOME-DESKTOP", files.USERHOME);
 
 				ImGui.endChild(); // End user-drs
 
@@ -96,23 +97,26 @@ public class FileExplorerDialog extends Panel {
 					ImGui.tableSetupColumn("type");
 					ImGui.tableHeadersRow();
 
-					if (files != null) {
-						for (Path file : files) {
+					if (directoryElements != null) {
+						for (Path file : directoryElements) {
 							ImGui.tableNextRow();
 							ImGui.tableSetColumnIndex(0);
 
 							// file/directory select button
-							String fn = file.getFileName().toString(); // filename
+							String elementName = file.getFileName().toString(); // filename
 
 							boolean isDirectory = Files.isDirectory(file);
 
-							// 
-							if(ImGui.button(fn)) {
+							// element button
+							if(ImGui.button(elementName)) {
+
+								String elementPath = directoryPath.get() + "/" + elementName;
+
 								if(isDirectory) {
-									directory(path.get() + "\\" + fn);
+									init(elementPath);
 
 								} else {
-									filename.set(fn);
+									filePath.set(elementPath);
 								}
 							}
 
@@ -132,11 +136,11 @@ public class FileExplorerDialog extends Panel {
 				ImGui.beginChild("Config-user-file");
 				childPadding(10f);
 
-				ImGui.inputText("file-name", filename);
+				ImGui.inputText("file-name", filePath);
 				ImGui.sameLine();
 
 				if (ImGui.button("select")){
-					callback.call(path.get() + "\\" + fn);
+					callback.call(filePath.get());
 					open = false;
 				}
 
@@ -154,6 +158,12 @@ public class FileExplorerDialog extends Panel {
 			}
 		}
 
-		lastPath.set(path.get());
+		lastDirectoryPath.set(directoryPath.get());
+	}
+
+	private void directAccess(String accessName, String dir) {
+		if(ImGui.button(accessName)) {
+			init(dir);
+		}
 	}
 }
