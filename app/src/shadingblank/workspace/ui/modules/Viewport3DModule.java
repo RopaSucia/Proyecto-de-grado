@@ -5,8 +5,8 @@ import java.util.List;
 import imgui.ImGui;
 import imgui.flag.ImGuiChildFlags;
 import imgui.flag.ImGuiWindowFlags;
-import shadingblank.nodes.CameraNode;
-import shadingblank.nodes.ViewportNode;
+import shadingblank.workspace.nodes.CameraNode;
+import shadingblank.workspace.nodes.ViewportNode;
 import shadingblank.workspace.ui.Panel;
 
 public class Viewport3DModule extends Panel{
@@ -31,7 +31,6 @@ public class Viewport3DModule extends Panel{
 			ImGuiChildFlags.Border |
 					ImGuiChildFlags.ResizeX |
 					ImGuiChildFlags.ResizeY;
-
 
 	public Viewport3DModule() {
 		viewportSize = new float[] { 800, 600 };
@@ -65,6 +64,7 @@ public class Viewport3DModule extends Panel{
 
 			String current = (goodViewport) ? currentViewport.name.value: "select";
 
+			ImGui.setNextItemWidth(100f);
 			if (ImGui.beginCombo("###buffer", current)) {
 
 				for (ViewportNode viewportNode : viewports) {
@@ -91,6 +91,7 @@ public class Viewport3DModule extends Panel{
 
 			String current = (goodCamera) ? currentCamera.name.value: "select";
 
+			ImGui.setNextItemWidth(100f);
 			if (ImGui.beginCombo("camera", current)) {
 
 				for (CameraNode cameraNode : cameras) {
@@ -116,16 +117,13 @@ public class Viewport3DModule extends Panel{
 		// -------- SHOW BUFFER --------
 
 		if (goodViewport) {
-			if (currentViewport.closed == false)
-				ImGui.image(currentViewport.buffer.getTexture(), viewportSize[0], viewportSize[1]);
+			ImGui.image(currentViewport.buffer.getTexture(), viewportSize[0], ImGui.getContentRegionAvailY());
 
 		} else {
 			ImGui.text("Sin buffer seleccionado");
 		}
 
 		if (goodCamera) {
-			if (currentCamera.closed == false)
-				ImGui.text("Sin Camara seleccionada");
 
 		} else {
 			ImGui.text("Sin Camara seleccionada");

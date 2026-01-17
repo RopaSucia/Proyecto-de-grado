@@ -3,7 +3,7 @@ package shadingblank.workspace.ui;
 import imgui.ImGui;
 import imgui.ImGuiStyle;
 import imgui.ImVec2;
-import shadingblank.nodes.ViewportNode;
+import shadingblank.workspace.nodes.ViewportNode;
 import imgui.flag.ImGuiWindowFlags;
 import imgui.flag.ImGuiChildFlags;
 import imgui.flag.ImGuiCol;

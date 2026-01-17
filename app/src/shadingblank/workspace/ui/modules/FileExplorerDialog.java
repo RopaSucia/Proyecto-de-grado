@@ -17,9 +17,6 @@ public class FileExplorerDialog extends Panel {
 		lastDirectoryPath, // last dir
 		filePath;	// current selected file
 
-
-	private boolean[] type;
-
 	private List<Path> directoryElements;
 
 	private int fileListFlags = 

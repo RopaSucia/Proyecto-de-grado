@@ -3,10 +3,10 @@ package shadingblank.workspace;
 import java.util.List;
 import java.util.ArrayList;
 
-import shadingblank.nodes.CameraNode;
-import shadingblank.nodes.MeshNode;
-import shadingblank.nodes.Node;
-import shadingblank.nodes.ViewportNode;
+import shadingblank.workspace.nodes.CameraNode;
+import shadingblank.workspace.nodes.MeshNode;
+import shadingblank.workspace.nodes.Node;
+import shadingblank.workspace.nodes.ViewportNode;
 
 public class NodeManager{
 

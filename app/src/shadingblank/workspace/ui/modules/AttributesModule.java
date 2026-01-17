@@ -5,16 +5,7 @@ import imgui.flag.ImGuiCol;
 import imgui.type.ImFloat;
 import imgui.type.ImString;
 import shadingblank.imguiconfig.GuiLayer;
-import shadingblank.nodes.Attribute1f;
-import shadingblank.nodes.Attribute2f;
-import shadingblank.nodes.Attribute3f;
-import shadingblank.nodes.Attribute4f;
-import shadingblank.nodes.ColorAttribute;
-import shadingblank.nodes.Node;
-import shadingblank.nodes.NodeAttribute;
-import shadingblank.nodes.ShaderAttribute;
-import shadingblank.nodes.SortAttributes;
-import shadingblank.nodes.TextAttribute;
+import shadingblank.workspace.nodes.*;
 
 public class AttributesModule implements GuiLayer {
 

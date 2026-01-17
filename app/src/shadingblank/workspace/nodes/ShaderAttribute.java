@@ -1,4 +1,4 @@
-package shadingblank.nodes;
+package shadingblank.workspace.nodes;
 
 import shadingblank.CurrentInstance;
 import shadingblank.rendering.ShaderProgram;

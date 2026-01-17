@@ -1,4 +1,4 @@
-package shadingblank.nodes;
+package shadingblank.workspace.nodes;
 
 import org.joml.Vector2f;
 

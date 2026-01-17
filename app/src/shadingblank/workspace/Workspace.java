@@ -1,8 +1,8 @@
 package shadingblank.workspace;
 
 import shadingblank.CurrentInstance;
-import shadingblank.nodes.CameraNode;
-import shadingblank.nodes.ViewportNode;
+import shadingblank.workspace.nodes.CameraNode;
+import shadingblank.workspace.nodes.ViewportNode;
 import shadingblank.rendering.FrameBuffer;
 
 public class Workspace implements CurrentInstance {

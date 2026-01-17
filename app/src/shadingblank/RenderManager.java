@@ -2,7 +2,7 @@ package shadingblank;
 
 import java.util.List;
 
-import shadingblank.nodes.MeshNode;
+import shadingblank.workspace.nodes.MeshNode;
 import shadingblank.rendering.*;
 import shadingblank.workspace.NodeManager;
 

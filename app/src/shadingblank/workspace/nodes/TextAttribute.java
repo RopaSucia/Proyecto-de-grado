@@ -1,4 +1,4 @@
-package shadingblank.nodes;
+package shadingblank.workspace.nodes;
 
 public class TextAttribute extends NodeAttribute{
 

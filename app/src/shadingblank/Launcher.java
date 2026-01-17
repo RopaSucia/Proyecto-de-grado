@@ -5,9 +5,9 @@ import shadingblank.workspace.Workspace;
 import shadingblank.workspace.ui.*;
 import shadingblank.workspace.ui.modules.FileExplorerDialog;
 
-import shadingblank.nodes.CameraNode;
-import shadingblank.nodes.ViewportNode;
-import shadingblank.nodes.MeshNode;
+import shadingblank.workspace.nodes.CameraNode;
+import shadingblank.workspace.nodes.ViewportNode;
+import shadingblank.workspace.nodes.MeshNode;
 
 public class Launcher extends Motor{
 

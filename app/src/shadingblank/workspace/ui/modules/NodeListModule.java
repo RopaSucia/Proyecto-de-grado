@@ -4,7 +4,7 @@ import imgui.ImGui;
 import imgui.flag.ImGuiCol;
 import imgui.flag.ImGuiStyleVar;
 import imgui.flag.ImGuiTableFlags;
-import shadingblank.nodes.Node;
+import shadingblank.workspace.nodes.Node;
 import shadingblank.workspace.NodeManager;
 import shadingblank.workspace.ui.Panel;
 
