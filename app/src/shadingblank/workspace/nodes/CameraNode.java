@@ -14,6 +14,7 @@ public class CameraNode extends Node {
 
 	public final Attribute3f pos;
 	public final Attribute3f angles;
+	public final Attribute1f velocity;
 
 	public float width, height;
 
@@ -30,6 +31,8 @@ public class CameraNode extends Node {
 
 		pos = new Attribute3f("position",this, 0, 0 ,0);
 		angles = new Attribute3f("angle", this, 0, 0, 0);
+
+		velocity = new Attribute1f("velocity", this, 1);
 	}
 
 	public CameraNode(String name, float size[], boolean removable) {

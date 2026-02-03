@@ -7,10 +7,26 @@ import shadingblank.rendering.*;
 
 public final class ResourceManager {
 
-	private List<Resource> resources = new ArrayList<>();
+	private final List<Resource> resources;
+	private final MeshLoader meshLoader;
+
+	public ResourceManager () {
+
+		resources = new ArrayList<>();
+		meshLoader = new MeshLoader();
+
+	}
 
 	public void add(Resource res) {
 		resources.add(res);
+	}
+
+	public void addModel(String resDir) {
+		Mesh[] meshes = meshLoader.load(resDir);
+
+		for(Mesh mesh: meshes) {
+			resources.add(mesh);
+		}
 	}
 
 	public List<Resource> getResources() {

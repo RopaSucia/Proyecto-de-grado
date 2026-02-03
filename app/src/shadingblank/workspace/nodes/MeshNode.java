@@ -1,5 +1,6 @@
 package shadingblank.workspace.nodes;
 
+import shadingblank.CurrentInstance;
 import shadingblank.rendering.Mesh;
 import shadingblank.rendering.ShaderProgram;
 
@@ -9,14 +10,9 @@ public class MeshNode extends Node{
 
 	public static final String type = "Mesh";
 
-	private static final Mesh customMesh = new Mesh("mesh.obj", new float[]{
-			-0.5f, 0.5f, 0,
-			-0.5f, -0.5f, 0,
-			0.5f, -0.5f, 0,
-			0.5f, 0.5f, 0
-		}, new int[]{
-			0, 1, 2, 2, 3, 0
-		});
+	private static final Mesh customMesh = 
+	CurrentInstance.render.meshLoader.load(
+		"C:\\Users\\USER\\Desktop\\ShadingBlank\\app\\resources\\Utah.stl")[0];
 
 	private Mesh mesh;
 

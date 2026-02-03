@@ -12,6 +12,7 @@ public class RenderManager{
 
 	public final List<MeshNode> meshes;
 	public final List<ShaderProgram> shaders; 
+	public final MeshLoader meshLoader;
 
 	public ShaderProgram currentShaderProgram;
 
@@ -20,6 +21,7 @@ public class RenderManager{
 	public RenderManager(NodeManager nodeManager) {
 		meshes = nodeManager.meshNodes;
 		shaders = new ArrayList<>();
+		meshLoader = new MeshLoader();
 	}
 
 	public void draw() {

@@ -2,7 +2,6 @@ package shadingblank.workspace.ui.modules;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 import imgui.ImGui;
@@ -24,7 +23,7 @@ public class FileExplorerDialog extends Panel {
 	ImGuiTableFlags.RowBg | ImGuiTableFlags.ScrollY;
 
 	private ExplorerReturnCallback callback;
-
+	private String type = "shaders";
 	private boolean open;
 
 	public FileExplorerDialog(ExplorerReturnCallback callback) {
@@ -137,18 +136,52 @@ public class FileExplorerDialog extends Panel {
 				ImGui.sameLine();
 
 				if (ImGui.button("select")){
-					callback.call(filePath.get());
+					callback.call(filePath.get(), type);
 					open = false;
 				}
 
 				ImGui.sameLine();
 
 				if (ImGui.button("cancel")){
-					callback.call(null);
+					callback.call(null, type);
 					open = false;
 				}
 
 				ImGui.sameLine();
+
+				ImGui.setNextItemWidth(60f);
+
+				if(ImGui.beginCombo("###typesOfFiles", type)) {
+				
+					boolean isSelected = ("meshes".equals(type));
+					if(ImGui.selectable("meshes", isSelected)) {
+						type = "meshes";
+					}
+
+					if(isSelected) {
+						ImGui.setItemDefaultFocus();
+					}
+
+					isSelected = ("textures".equals(type));
+					if(ImGui.selectable("textures", isSelected)) {
+						type = "textures";
+					}
+
+					if(isSelected) {
+						ImGui.setItemDefaultFocus();
+					}
+
+					isSelected = ("shaders".equals(type));
+					if(ImGui.selectable("shaders", isSelected)) {
+						type = "shaders";
+					}
+
+					if(isSelected) {
+						ImGui.setItemDefaultFocus();
+					}
+
+				ImGui.endCombo();
+			}
 
 				ImGui.endChild();
 				ImGui.endPopup();

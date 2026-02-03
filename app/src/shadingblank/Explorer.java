@@ -16,6 +16,7 @@ public class Explorer implements CurrentInstance {
 
 	private List<Path> paths;
 
+	public static final int MESH = 0;
 	public static final int SHADER = 1;
 	public static final int TEXTURE = 2;
 	public static final int PROJECT = 3;
@@ -29,11 +30,17 @@ public class Explorer implements CurrentInstance {
 
 		returnCallback = new ExplorerReturnCallback() {
 			@Override
-			public void call(String dir) {
+			public void call(String dir, String type) {
 				if (dir != null) {
 					Path file = Paths.get(dir).toAbsolutePath();
 
 					switch (currentConfiguration) {
+
+						case MESH: 
+
+							resources.addModel(dir);
+
+							break;
 
 						case SHADER:
 

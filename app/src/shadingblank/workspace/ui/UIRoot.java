@@ -8,7 +8,7 @@ import imgui.flag.ImGuiWindowFlags;
 import imgui.flag.ImGuiChildFlags;
 import imgui.flag.ImGuiCol;
 
-public class MainSpace extends Panel {
+public class UIRoot extends Panel {
 
 	private int windowFlags =
 
@@ -45,21 +45,15 @@ public class MainSpace extends Panel {
 	public ToolsModule toolsModule1;
 	public ResourceVisor resourceVisor;
 
-	private ImGuiStyle style;
+	private UIColor color;
 
-	public MainSpace() {
+	public UIRoot() {
 		pos = new ImVec2();
 		modelViewSize = new ImVec2();
 
 		//viewportSize = new float[2];
-		style = ImGui.getStyle();
-
-		style.setChildRounding(5f);
-		style.setColor(ImGuiCol.WindowBg, 0.05f, 0.05f, 0.05f, 1f);
-		style.setColor(ImGuiCol.ChildBg, 0.01f, 0.01f, 0.01f, 1f);
-		style.setColor(ImGuiCol.Button, .45f, .45f, .45f, .45f);
-		style.setFrameRounding(5f);
-		style.setChildBorderSize(0);
+		color = new UIColor();
+		color.setup();
 
 		toolsModule1 = new ToolsModule();
 
@@ -155,36 +149,4 @@ public class MainSpace extends Panel {
 	public float[] getViewportSize() {
 		return toolsModule1.viewportSize();
 	}
-
-	float[] windowBg = new float[4];
-	float[] childBg = new float[4];
-	float[] buttonCol = new float[4];
-	float[] hoverButtonCol = new float[4];
-	float[] selectButtonCol = new float[4];
-
-	public void configInterfaceColor() {
-
-		ImGui.begin("config Color");
-
-		ImGui.colorEdit4("Window background color", windowBg);
-		style.setColor(ImGuiCol.WindowBg, windowBg[0], windowBg[1], windowBg[2], windowBg[3]);
-
-		ImGui.colorEdit4("child background color", childBg);
-		style.setColor(ImGuiCol.ChildBg, childBg[0], childBg[1], childBg[2], childBg[3]);
-
-		ImGui.colorEdit4("button color", buttonCol);
-		style.setColor(ImGuiCol.Button, buttonCol[0], buttonCol[1], buttonCol[2], buttonCol[3]);
-
-		ImGui.colorEdit4("hover button color", hoverButtonCol);
-		style.setColor(ImGuiCol.ButtonHovered,
-				hoverButtonCol[0], hoverButtonCol[1], hoverButtonCol[2], hoverButtonCol[3]);
-
-		ImGui.colorEdit4("select button color", selectButtonCol);
-		style.setColor(ImGuiCol.ButtonActive,
-				selectButtonCol[0], selectButtonCol[1], selectButtonCol[2], selectButtonCol[3]);
-
-		ImGui.end();
-
-	}
-
 }

@@ -38,19 +38,19 @@ public class Workspace implements CurrentInstance {
 				camera.width = instance.UIroot.toolsModule1.viewportSize()[1];
 
 				if (events.isKeyPressed('W')) {
-					camera.moveZ(1f * delta);
+					camera.moveZ(1f * delta * camera.velocity.value);
 				}
 
 				if (events.isKeyPressed('S')) {
-					camera.moveZ(-1f * delta);
+					camera.moveZ(-1f * delta * camera.velocity.value);
 				}
 
 				if (events.isKeyPressed('A')) {
-					camera.moveX(1f * delta);
+					camera.moveX(1f * delta * camera.velocity.value);
 				}
 
 				if (events.isKeyPressed('D')) {
-					camera.moveX(-1f * delta);
+					camera.moveX(-1f * delta * camera.velocity.value);
 				}
 
 				if (events.mouseLeftClick()) {

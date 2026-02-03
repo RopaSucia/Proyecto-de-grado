@@ -38,7 +38,7 @@ public class Launcher extends Motor{
 
 	public Workspace workspace;
 
-	public MainSpace UIroot;
+	public UIRoot UIroot;
 
 	public Launcher() {
 		super();
@@ -56,14 +56,9 @@ public class Launcher extends Motor{
 
 		imagen = "C:\\Users\\USER\\Desktop\\ShadingBlank\\app\\resources\\Captura.PNG";
 
-		mesh = new Mesh("mesh.obj", new float[]{
-			-0.5f, 0.5f, 0,
-			-0.5f, -0.5f, 0,
-			0.5f, -0.5f, 0,
-			0.5f, 0.5f, 0
-		}, new int[]{
-			0, 1, 2, 2, 3, 0
-		});
+		MeshLoader ldr = new MeshLoader();
+		mesh = ldr.load("C:\\Users\\USER\\Desktop\\ShadingBlank\\app\\resources\\Utah.stl")[0];
+
 		backgroundColor(0, 0, 1, 1);
 
 		files.getDirectoryFiles("C:\\Users\\USER\\Desktop");
@@ -77,7 +72,7 @@ public class Launcher extends Motor{
 
 		workspace = new Workspace();
 
-		UIroot = new MainSpace();
+		UIroot = new UIRoot();
 
 		explorer = new Explorer();
 		scene.nodes.createNode("nodoWebon");
