@@ -20,7 +20,7 @@ public class UIColor {
 	public void setup() {
 
 		style = ImGui.getStyle();
-
+/*
 		style.setChildRounding(5f);
 		style.setColor(ImGuiCol.WindowBg, 0.05f, 0.05f, 0.05f, 1f);
 		style.setColor(ImGuiCol.ChildBg, 0.01f, 0.01f, 0.01f, 1f);
@@ -32,7 +32,7 @@ public class UIColor {
 		style.setColor(ImGuiCol.FrameBg,  themeColorA[0], themeColorA[1], themeColorA[2], themeColorA[3]);
 		style.setColor(ImGuiCol.FrameBgActive,  themeColorB[0], themeColorB[1], themeColorB[2], themeColorB[3]);
 		style.setColor(ImGuiCol.FrameBgHovered,  themeColorC[0], themeColorC[1], themeColorC[2], themeColorC[3]);
-
+*/
 		style.setFrameRounding(5f);
 		style.setChildBorderSize(0);
 
